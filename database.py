@@ -22,3 +22,4 @@ def lookup_person(db):
 	field = input('What would you like to konw? (name, age, phone) ')
 	field = field.strip().lower()
 	print(field.capitalize() +':' ??
+        Now I am making some change on my Mac
