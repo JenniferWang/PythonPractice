@@ -32,7 +32,7 @@ debug_login = printdebug2(login2)
 debug_login()
 
 #version3
-@printdebug2
+@printdebug2 # login3= printdebug2(login3)
 def login3():
 	"""
 	不带参数
@@ -58,3 +58,34 @@ def login4(user):
 	print('in login: ' + user)
 
 login('Jennifer')
+
+#version5
+def printdebug_level(level): 
+	"""
+	Recall that parenthesis in Python are the call operator.
+
+	@printdebug_level(level = 5) means call function printdebug_level with parameter level =5, and we get a specific function printdebug5(func) in return, and then use printdebug5(func) as the decorator
+
+	printdebug_level(level) is called wrapper.
+	"""
+	def printdebug5(func):
+		def __decorator(user):
+			print('enter the login v5'+str('level'))
+			func(user)
+			print('exit the login')
+		return __decorator
+	return printdebug5
+
+@printdebug_level(level = 5) 
+def login5(user):
+	print('in login: '+user)
+
+login5('Jennifer')
+
+
+
+
+
+
+
+
