@@ -54,7 +54,7 @@ class ListRule(ListItemRule):
 	inside = False # indicate whether the parser is currently inside the list
 	def condition(self,block):
 		'''
-		The condition is always true because you want to examine alll blocks
+		The condition is always true because you want to examine all blocks
 		'''
 		return True
 	def action(self,block,handler):

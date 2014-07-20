@@ -39,13 +39,13 @@ class BasicTextParser(Parser):
 	'''
 	A specific Parser that adds rules and filters in its constructor.
 	'''
-	def __init__(self,handler):
+	def __init__(self,handler): # The order is important
 		Parser.__init__(self,handler)
 		self.addRule(ListRule())
 		self.addRule(ListItemRule())
 		self.addRule(TitleRule())
 		self.addRule(HeadlineRule())
-		self.addRule(ParagraphRule())
+		self.addRule(ParagraphRule()) # Default is placed in the last
 
 		# Filters - They are simply regular expressions
 		self.addFilter(r'\*(.+?)\*','emphasis')
