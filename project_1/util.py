@@ -1,4 +1,5 @@
 # A text block generator
+
 def lines(file):
     """
     tack a new line to the end of the file
@@ -10,10 +11,12 @@ def lines(file):
 def blocks(file):
     block = []
     for line in lines(file):
-        if line.strip():
+        if line.strip() and not line.strip()[0] == '-':
             block.append(line)
-        elif block:
+        elif not line.strip() and block:
             yield ''.join(block).strip()
-            # 直接连接，当中没有任何分隔符
-            block = []
+            block = []        
+        elif line.strip() and line.strip()[0] =='-':
+            yield line.strip()
+
 

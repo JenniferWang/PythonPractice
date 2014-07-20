@@ -4,6 +4,15 @@
 # TODO : adfadf
 
 class Handler:
+    '''
+    An object that handles method calls from  the Parser.
+
+    The Parser will call the start() and end() methods at the 
+    beginning of each block, with the proper block name as a
+    parameter. The sub() method will be used in regular expression
+    substitution. When called with a name such as 'emphasis', it will
+    return a proper substitution function.
+    '''
     def callback(self,prefix,name,*args):
         '''
         Find the correct method
@@ -39,51 +48,46 @@ class Handler:
 
 
 class HTMLRenderer(Handler):
+    '''
+    A specific handler used for rendering HTML
+
+    The methods in HTMLRenderer are accessed from the superclass
+    Handler's start(), end(), and sub() methods. They implement basic
+    markup as used in HTML documents.
+    '''
+    def start_document(self):
+        # TODO: check this '...'
+        print('<html><head><title>...</title></head><body>')
+    def end_document(self):
+        print('</body></html>')
     def start_paragraph(self):
         print('<p>')
     def end_paragraph(self):
         print('</p>')
-
+    def start_heading(self):
+        print('<h2>')
+    def end_heading(self):
+        print('</h2>')
+    def start_list(self):
+        print('<ul>')
+    def end_list(self):
+        print('</ul>')
+    def start_listitem(self):
+        print('<li>')
+    def end_listitem(self):
+        print('</li>')
+    def start_title(self):
+        print('<h1>')
+    def end_title(self):
+        print('</h1>')
     def sub_emphasis(self,match):
-        return "<em>%s</em>" % match.group(1)
+        return '<em>%s</em>' % match.group(1)
+    def sub_url(self,match):
+        return '<a href ="%s">%s</a>' % (match.group(1),match.group(1))
+    def sub_mail(self,match):
+        return '<a hrf ="mailto:%s">%s</a>' % (match.group(1),match.group(1))
+    def feed(self,data):
+        print(data)
 
 
-class Parser:
-    '''
-    A Parser reads a text file, applying rules and controlling a handler.
-    '''
-    def __init__(self,handler):
-        self.handler = handler
-        self.rules = []
-        self.filters = []
-
-    def addRule(self,rule):
-        self.rules.append(rule)
-
-    def addFilter(self,pattern,name):
-        def filter(block,handler):
-            return re.sub(pattern,handler.sub(name),block)
-            ## Need to Check
-        self.filters.append(filter)
-
-    def parse(self,file):
-        self.handler.start('document')
-        for block in block(file):
-            for filter in self.filters:
-                ## pay attention to self.handler here
-                block = filter(block,self.handler)
-            for rule in self.rules:
-                if rule.condition(block):
-                    last = rule.action(block,self.handler)
-                    if last: break
-
-        self.handler.end('document')
-
-
-if __name__ == '__main__':
-    from handlers import HTMLRenderer
-    import re
-    # TODO: Not the expected result
-    handler = HTMLRenderer()
-    print(re.sub(r'\*(.+?)\*',handler.sub('emphasis'),r'This *is* a test'))
 
