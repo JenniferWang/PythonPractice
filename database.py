@@ -21,5 +21,39 @@ def lookup_person(db):
 	pid = input('Enter ID number: ')
 	field = input('What would you like to konw? (name, age, phone) ')
 	field = field.strip().lower()
-	print(field.capitalize() +':' ??
-        Now I am making some change on my Mac
+	field = field.split(',')
+	for ele in field:
+		try:
+			print(ele)
+			print(ele.capitalize()+':'+db[pid][ele])
+		except KeyError:
+			continue
+
+def print_help():
+	print('The available commands are: ')
+	print('store  : Stores information about a person')
+	print('lookup : Look up a person from ID number')
+	print('quit   : Save changes and exit')
+	print('?      : Prints this message')
+
+def enter_command():
+	cmd = input('Enter command (? for help): ')
+	cmd = cmd.strip().lower()
+	return cmd
+
+def main():
+	database = shelve.open('database.dat')
+	try:
+		while True:
+			cmd =enter_command()
+			if cmd == 'store':
+				store_person(database)
+			elif cmd == 'lookup':
+				lookup_person(database)
+			elif cmd == '?':
+				print_help()
+			elif cmd == 'quit':
+				return
+	finally:
+		database.close()
+if __name__ =='__main__': main()

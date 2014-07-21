@@ -2,7 +2,7 @@
 # written by Logon
 class StopWatch(object):
     def __init__(self, on_exited=None):
-        self.on_exited = on_exited or (lambda t: None)
+        self.on_exited = on_exited or (lambda t: None) ？？
 
     def __enter__(self):
         self.start = time.clock()
@@ -12,7 +12,7 @@ class StopWatch(object):
         self.end = time.clock()
         self.interval = self.end - self.start
 
-        self.on_exited(self)
+        self.on_exited(self) #????
 
     def __str__(self):
         if hasattr(self, 'interval'):
