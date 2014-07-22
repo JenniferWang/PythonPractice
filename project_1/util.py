@@ -13,5 +13,6 @@ def blocks(file):
         if line.strip():
             block.append(line)
         elif block:
-            yield ' '.join(block).strip()
+            yield ''.join(block).strip()
+            # 直接连接，当中没有任何分隔符
             block = []
