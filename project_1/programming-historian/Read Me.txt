@@ -1,0 +1,3 @@
+READ ME for programming-historian.zip11 June 2012. Adam Crymble.This zipped directory contains all the files and programs needed to continue working through the Programming Historian 2 after completing the lesson:“HTML to a List of Words”
+
+http://chnm.gmu.edu/press/programminghistorian/from-html-to-a-list-of-words
