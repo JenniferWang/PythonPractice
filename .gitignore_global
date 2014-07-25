@@ -1,0 +1,11 @@
+*.a
+*~
+!lib.a
+*.swp
+*.ipynb
+*__/
+*.pdf
+_*
+/.tags
+/.gemtags
+/.tags_sorted_by_file
