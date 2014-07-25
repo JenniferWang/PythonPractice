@@ -17,11 +17,3 @@ def blocks(file):
             # 直接连接，当中没有任何分隔符
             block = []
 
-# Handler:
-#     generate the resulting marked-up text
-#     receives detailed instructions from the parser
-class HTMLRenderer:
-    def start_paragraph(self):
-        print('<p>')
-    def end_paragraph(self):
-        print('</p>')
