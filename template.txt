@@ -1,0 +1,8 @@
+[import time]
+Dear [name],
+
+Is your email address [email]?
+
+<using [language] >
+
+time: [time.asctime()]
